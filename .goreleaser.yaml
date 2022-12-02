@@ -3,7 +3,8 @@ project_name: falcon-cli
 env:
   - CGO_ENABLED=0
   - GO111MODULE=on
-  - REPO=github.com/operator-framework/operator-sdk
+  - REPO=github.com/crowdstrike/falcon-cli
+  - PWD=/Users/galford/development/falcon-cli
 
 builds:
   - env:
@@ -14,11 +15,12 @@ builds:
     asmflags:
       - all=-trimpath={{ .Env.PWD }}
     gcflags:
-      - all=-trimpath={{ .Env.PWD }
+      - all=-trimpath={{ .Env.PWD }}
     ldflags:
-      - -s -w -X {{ .Env.REPO }}/pkg/version.Version={{.Version}}
-      - -X {{ .Env.REPO }}/pkg/version.GitVersion={{.Tag}}
-      - -X {{ .Env.REPO }}/pkg/version.GitCommit={{.Commit}}
+      - -s -w
+      - -X {{ .Env.REPO }}/pkg/version.Version={{ .Version }}
+      - -X {{ .Env.REPO }}/pkg/version.GitVersion={{ .Tag }}
+      - -X {{ .Env.REPO }}/pkg/version.GitCommit={{ .Commit }}
     targets:
       - darwin_amd64
       - darwin_arm64
