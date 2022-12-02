@@ -17,7 +17,7 @@ builds:
       - all=-trimpath={{ .Env.PWD }
     ldflags:
       - -s -w -X {{ .Env.REPO }}/pkg/version.Version={{.Version}}
-      - -X {{ .Env.REPO }}/pkg/version.GitVersion={{.Version}}
+      - -X {{ .Env.REPO }}/pkg/version.GitVersion={{.Tag}}
       - -X {{ .Env.REPO }}/pkg/version.GitCommit={{.Commit}}
     targets:
       - darwin_amd64
@@ -49,7 +49,7 @@ archives:
 checksum:
   name_template: "checksums.txt"
 snapshot:
-  name_template: "{{ .Env.GIT_VERSION }}"
+  name_template: "{{ .Version }}"
 changelog:
   sort: asc
   filters:
@@ -58,7 +58,7 @@ changelog:
       - "^test:"
 nfpms:
   - package_name: falcon-cli
-    file_name_template: "{{ .PackageName }}-{{ .Version }}-{{ .Release}}.{{ .Arch }}"
+    file_name_template: "{{ .PackageName }}-{{ .Major }}.{{ .Minor }}.{{ .PATCH }}-{{ .Release}}.{{ .Arch }}"
     replacements:
       amd64: x86_64
       arm64: aarch64
