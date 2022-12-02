@@ -60,7 +60,7 @@ changelog:
       - "^test:"
 nfpms:
   - package_name: falcon-cli
-    file_name_template: "{{ .PackageName }}-{{ .Major }}.{{ .Minor }}.{{ .PATCH }}-{{ .Release}}.{{ .Arch }}"
+    file_name_template: "{{ .PackageName }}-{{ .Major }}.{{ .Minor }}.{{ .Patch }}-{{ .Release}}.{{ .Arch }}"
     replacements:
       amd64: x86_64
       arm64: aarch64
